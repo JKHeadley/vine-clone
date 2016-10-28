@@ -1,0 +1,13 @@
+<div class="container">
+
+    <button ng-click="main.upload()">Upload</button>
+
+    <div ng-repeat-start="video in main.videos"></div>
+
+    <h1>{{video.title}}</h1>
+
+    <ui-video video="video"></ui-video>
+
+    <div ng-repeat-end=""></div>
+
+</div>

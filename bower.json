@@ -1,0 +1,33 @@
+{
+  "name": "vineClone",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular-resource": "~1.4.2",
+    "angular-ui-router": "~0.2.15",
+    "bootstrap-sass": "~3.3.5",
+    "angular-bootstrap": "~2.2.0",
+    "moment": "~2.10.6",
+    "animate.css": "~3.4.0",
+    "angular": "~1.4.2",
+    "ng-file-upload": "^12.2.12",
+    "bootstrap": "^3.3.7",
+    "video.js": "^5.12.6"
+  },
+  "devDependencies": {
+  },
+  "overrides": {
+    "bootstrap-sass": {
+      "main": [
+        "assets/stylesheets/_bootstrap.scss",
+        "assets/fonts/bootstrap/glyphicons-halflings-regular.eot",
+        "assets/fonts/bootstrap/glyphicons-halflings-regular.svg",
+        "assets/fonts/bootstrap/glyphicons-halflings-regular.ttf",
+        "assets/fonts/bootstrap/glyphicons-halflings-regular.woff",
+        "assets/fonts/bootstrap/glyphicons-halflings-regular.woff2"
+      ]
+    }
+  },
+  "resolutions": {
+    "angular": "~1.4.2"
+  }
+}

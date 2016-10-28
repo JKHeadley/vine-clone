@@ -1,0 +1,59 @@
+<div class="container upload-modal">
+
+    <form role="form" editable-form ng-class="!add_video.$valid ? 'show_errors' : ''" class="form-horizontal" name="add_video" novalidate>
+
+        <div class="form-group">
+            <label class="col-sm-1 col-sm-offset-2 control-label text-left">Title:</label>
+
+            <div class="col-sm-8">
+                <input type="text" placeholder="My Video" class="form-control" name="title" ng-model="vm.title" ng-change="vm.titleChanged(vm.title)" ng-minlength="3" required>
+
+                <div class="m-t-xs" ng-show="add_video.title.$invalid && add_video.submitted">
+                    <small class="text-danger" ng-show="add_video.title.$error.required">Please input a title</small>
+
+                    <small class="text-danger" ng-show="add_video.title.$error.minlength">The title is required to be at least 3 characters</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" ng-show="!vm.video">
+            <div class="col-sm-4">
+                <div ngf-select="vm.addVideoFile($file)"
+                     ngf-drop="vm.addVideoFile($file)"
+                     ngf-drag-over-class="'dragover'"
+                     ng-model="vm.video"
+                     ngf-multiple="false"
+                     ngf-pattern="'video/*'"
+                     ngf-accept="'video/*'"
+                     ngf-validate="{ duration: {max: '10s'} }"
+                     ngf-run-all-validations="runAllValidations"
+                     class="drop-box"
+                     name="file">Select File
+                    <span ng-show="true"> or Drop File</span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="m-t-xs" ng-show="add_video.file.$invalid && add_video.submitted">
+            <small class="text-danger video-error" ng-show="add_video.file.$error.required">Please select a video to upload.</small>
+        </div>
+
+        <div ng-show="add_video.file.$error.maxDuration" class="text-danger video-error">The video you selected is too long. Please upload videos 1 minute or less.</div><br>
+
+        <video ngf-src="vm.video" class="upload-preview"></video>
+
+        <!--<div class="col-sm-12"><uib-progressbar value="vm.progress"></uib-progressbar></div>-->
+        <uib-progressbar value="vm.progress"></uib-progressbar>
+
+        <div class="row">
+            <button ng-click="vm.cancel()" class="col-sm-2 col-sm-offset-4" ng-show="vm.progress !== 100">Cancel</button>
+
+            <button ng-click="vm.upload()" class="col-sm-2 col-sm-offset-1" ng-show="vm.progress !== 100">Upload</button>
+
+            <button ng-click="vm.done()" class="col-sm-2 col-sm-offset-5" ng-show="vm.progress === 100">Done!</button>
+        </div>
+
+    </form>
+
+</div>
