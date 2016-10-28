@@ -20,9 +20,10 @@
 
         function init() {
             $http.get('./assets/config.json').success(function (data){
-                config["AWSAccessKeyId"] = data.AWSAccessKeyId,
-                config["policy"] = data.policy,
-                config["signature"] = data.signature
+                config["AWSAccessKeyId"] = data.AWSAccessKeyId;
+                config["policy"] = data.policy;
+                config["signature"] = data.signature;
+                config["s3url"] = data.s3url;
             });
         }
 
@@ -41,11 +42,9 @@
         }
 
         function upload() {
-            $log.log(config);
-
             if ($scope.add_video.$valid && $scope.vm.video) {
                 Upload.upload({
-                    url: 'https://vine-clone.s3.amazonaws.com/', //S3 upload url including bucket name
+                    url: config.s3url, //S3 upload url including bucket name
                     method: 'POST',
                     data: {
                         key: $scope.vm.title + "." + videoExtension, // the key to store the file on S3, could be file name or customized
@@ -84,7 +83,7 @@
         function done() {
             $log.log($scope.vm.video)
             $uibModalInstance.close({
-                src: "https://vine-clone.s3.amazonaws.com/" + $scope.vm.title + "." + videoExtension,
+                src: config.s3url + $scope.vm.title + "." + videoExtension,
                 title: $scope.vm.title,
                 ext: videoExtension
             })
